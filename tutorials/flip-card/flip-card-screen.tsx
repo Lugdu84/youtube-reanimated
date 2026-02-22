@@ -25,13 +25,11 @@ function FlipCardScreen({
 			<Text style={styles.title}>Flip Card</Text>
 			<Text style={styles.subtitle}>Clique sur la carte pour la retourner</Text>
 			<Text style={styles.badge}>{subtitle}</Text>
-
 			<FlipCard
 				front={<FrontFace />}
 				back={<BackFace />}
 				isFlipped={isFlipped}
 				onPress={handleFlip}
-				// useSpring={true}
 			/>
 		</View>
 	);

@@ -9,7 +9,6 @@ export type FlipCardProps = {
 	width?: number;
 	height?: number;
 	style?: ViewStyle;
-	useSpring?: boolean; // option pour l'animation avec useSpring
 };
 
 export const styles = StyleSheet.create({
@@ -24,10 +23,7 @@ export const styles = StyleSheet.create({
 		backfaceVisibility: 'hidden',
 		borderWidth: 1,
 		borderColor: '#D0D5DD',
-		shadowColor: '#000',
-		shadowOpacity: 0.1,
-		shadowOffset: { width: 0, height: 8 },
-		shadowRadius: 16,
+		boxShadow: '0px 8px 16px rgba(0, 0, 0, 0.1)',
 		elevation: 4,
 	},
 });

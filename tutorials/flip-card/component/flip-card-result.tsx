@@ -3,7 +3,6 @@ import Animated, {
 	interpolate,
 	useAnimatedStyle,
 	useDerivedValue,
-	withSpring,
 	withTiming,
 } from 'react-native-reanimated';
 
@@ -22,11 +21,10 @@ export function FlipCardResult({
 	width = 240,
 	height = 320,
 	style,
-	useSpring = false,
 }: FlipCardProps) {
 	// 1️⃣ La valeur partagée — progression du flip (0 = recto, 1 = verso)
 	// const progress = useSharedValue(isFlipped ? 1 : 0); ===> remplacé par useDerivedValue
-	// 👆 Comme pour le shake, cette valeur est partagée entre
+	// 👆 cette valeur est partagée entre
 	// le thread JS et le thread UI — l'animation reste fluide.
 
 	// 2️⃣ Quand isFlipped change, on anime la progression
@@ -34,13 +32,8 @@ export function FlipCardResult({
 	// 	progress.value = withTiming(isFlipped ? 1 : 0, { duration: DURATION }); ==> remplacé par useDerivedValue
 	// }, [isFlipped, progress]);
 
+	// 5️⃣ avec useDerivedValue, on n'a plus besoin de useEffect pour animer la valeur (en fin de vidéo, pour refactor)
 	const progress = useDerivedValue(() => {
-		if (useSpring) {
-			return withSpring(isFlipped ? 1 : 0, {
-				damping: 15,
-				stiffness: 100,
-			});
-		}
 		return withTiming(isFlipped ? 1 : 0, { duration: DURATION });
 	});
 
@@ -60,7 +53,7 @@ export function FlipCardResult({
 	const backStyle = useAnimatedStyle(() => {
 		const rotateY = interpolate(progress.value, [0, 1], [180, 360]);
 		return {
-			transform: [{ perspective: 1000 }, { rotateY: `${rotateY}deg` }],
+			transform: [{ rotateY: `${rotateY}deg` }],
 		};
 		// 👆 La face arrière commence retournée (180°) et
 		// revient à 360° (= 0°) quand on flip
