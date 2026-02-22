@@ -1,5 +1,6 @@
 import type { ComponentType } from 'react';
 
+import { FlipCardStarterScreen, FlipCardResultScreen } from '@/tutorials/flip-card/flip-card-screen';
 import { ShakeStarterScreen } from '@/tutorials/shake/starter-screen';
 import { ShakeResultScreen } from '@/tutorials/shake/result-screen';
 
@@ -24,6 +25,17 @@ export const tutorialRegistry = {
 		resultScreen: ShakeResultScreen,
 		youtube: {
 			url: 'https://www.youtube.com/results?search_query=reanimated+password+shake+tutorial',
+			label: 'Regarder le tuto YouTube',
+		},
+	},
+	'flip-card': {
+		title: 'Flip Card',
+		description:
+			'Carte recto/verso réutilisable avec contenu image + texte, base idéale pour un memory game.',
+		starterScreen: FlipCardStarterScreen,
+		resultScreen: FlipCardResultScreen,
+		youtube: {
+			url: 'https://www.youtube.com/results?search_query=reanimated+flip+card+tutorial',
 			label: 'Regarder le tuto YouTube',
 		},
 	},
