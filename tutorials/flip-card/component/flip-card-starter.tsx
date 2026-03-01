@@ -5,7 +5,8 @@ import {
 	styles,
 } from '@/tutorials/flip-card/component/shared';
 
-const DURATION = 450;
+// décommante pour utiliser la constante DURATION
+// const DURATION = 450;
 
 export function FlipCardStarter({
 	front,
