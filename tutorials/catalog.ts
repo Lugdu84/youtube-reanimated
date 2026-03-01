@@ -24,8 +24,8 @@ export const tutorialRegistry = {
 		starterScreen: ShakeStarterScreen,
 		resultScreen: ShakeResultScreen,
 		youtube: {
-			url: 'https://www.youtube.com/results?search_query=reanimated+password+shake+tutorial',
-			label: 'Regarder le tuto YouTube',
+			url: 'https://youtu.be/PmE6Il3bM3w',
+			label: 'Voir la video du tutoriel',
 		},
 	},
 	'flip-card': {
@@ -34,10 +34,6 @@ export const tutorialRegistry = {
 			'Carte recto/verso réutilisable avec contenu image + texte, base idéale pour un memory game.',
 		starterScreen: FlipCardStarterScreen,
 		resultScreen: FlipCardResultScreen,
-		youtube: {
-			url: 'https://www.youtube.com/results?search_query=reanimated+flip+card+tutorial',
-			label: 'Regarder le tuto YouTube',
-		},
 	},
 } as const satisfies Record<string, TutorialRecord>;
 

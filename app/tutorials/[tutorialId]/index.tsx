@@ -2,6 +2,7 @@ import { Link, Stack, useLocalSearchParams } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { HeaderNavLink } from '@/components/header-nav-link';
+import { YouTubeLink } from '@/components/youtube-link';
 import { isTutorialId, tutorialRegistry } from '@/tutorials/catalog';
 
 export default function TutorialDetailsScreen() {
@@ -52,6 +53,15 @@ export default function TutorialDetailsScreen() {
 					Result
 				</Link>
 			</View>
+
+			{tutorial.youtube ? (
+				<YouTubeLink
+					url={tutorial.youtube.url}
+					label={tutorial.youtube.label}
+					thumbnailUrl={tutorial.youtube.thumbnailUrl}
+					style={styles.youtubeCard}
+				/>
+			) : null}
 		</View>
 	);
 }
@@ -73,16 +83,8 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		gap: 10,
 	},
-	youtubeLink: {
+	youtubeCard: {
 		marginTop: 14,
-		alignSelf: 'flex-start',
-		paddingVertical: 8,
-	},
-	youtubeLinkText: {
-		fontSize: 14,
-		fontWeight: '600',
-		color: '#175CD3',
-		textDecorationLine: 'underline',
 	},
 	link: {
 		paddingVertical: 10,
