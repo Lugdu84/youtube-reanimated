@@ -32,6 +32,3 @@ export function FlipCardStarter({
 		</Pressable>
 	);
 }
-function withTiming(arg0: number, arg1: { duration: number }): any {
-	throw new Error('Function not implemented.');
-}
