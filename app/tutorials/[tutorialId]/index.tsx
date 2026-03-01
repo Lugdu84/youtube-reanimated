@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { HeaderNavLink } from '@/components/header-nav-link';
 import { YouTubeLink } from '@/components/youtube-link';
-import { isTutorialId, tutorialRegistry } from '@/tutorials/catalog';
+import { isTutorialId, tutorialRegistry, type TutorialRecord } from '@/tutorials/catalog';
 
 export default function TutorialDetailsScreen() {
 	const { tutorialId } = useLocalSearchParams<{ tutorialId: string }>();
@@ -17,7 +17,7 @@ export default function TutorialDetailsScreen() {
 		);
 	}
 
-	const tutorial = tutorialRegistry[tutorialId];
+	const tutorial: TutorialRecord = tutorialRegistry[tutorialId];
 
 	return (
 		<View style={styles.container}>
