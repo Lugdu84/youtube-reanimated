@@ -34,6 +34,10 @@ export const tutorialRegistry = {
 			'Carte recto/verso réutilisable avec contenu image + texte, base idéale pour un memory game.',
 		starterScreen: FlipCardStarterScreen,
 		resultScreen: FlipCardResultScreen,
+		youtube: {
+			url: 'https://youtu.be/fyqJi9xVY2w',
+			label: 'Voir la video du tutoriel',
+		},
 	},
 } as const satisfies Record<string, TutorialRecord>;
 
