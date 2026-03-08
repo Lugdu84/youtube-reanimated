@@ -10,49 +10,41 @@ import {
 	InstagramShareIcon,
 } from './instagram-icons';
 
-// 1️⃣ Importer Animated depuis Reanimated
-// import Animated from 'react-native-reanimated';
+// 1️⃣ Importer Animated et CSSAnimationKeyframes depuis Reanimated
+// import Animated, { CSSAnimationKeyframes } from 'react-native-reanimated';
 
 // 2️⃣ Créer l'objet d'animation du cœur (bounce)
 // Le cœur grossit (scale) et saute vers le haut (translateY négatif),
 // puis redescend sans rebond.
-// const heartBounce = {  };
+// const heartBounce: CSSAnimationKeyframes = {};
 
-// 3️⃣ Créer l'objet d'animation du repost (spin)
-// const repostSpin = {  };
-
-// 4️⃣ Ajouter likeKey pour relancer l'animation du cœur
-// const [likeKey, setLikeKey] = useState(0);
-
-// 5️⃣ Ajouter repostKey pour relancer l'animation du repost
-// const [repostKey, setRepostKey] = useState(0);
+// 6️⃣ Créer l'objet d'animation du repost (spin)
+// const repostSpin: CSSAnimationKeyframes = {};
 
 const ICON_SIZE = 24;
 
 export function InstagramAnimationsStarterScreen() {
 	const [isLiked, setIsLiked] = useState(false);
 	const [isReposted, setIsReposted] = useState(false);
-	// 4️⃣ Ajouter likeKey pour relancer l'animation du cœur
+	// 3️⃣ Ajouter likeKey pour relancer l'animation du cœur
 	// const [likeKey, setLikeKey] = useState(0);
-	// 5️⃣ Ajouter repostKey pour relancer l'animation du repost
+	// 7️⃣ Ajouter repostKey pour relancer l'animation du repost
 	// const [repostKey, setRepostKey] = useState(0);
 
 	const handleLike = () => {
-		setIsLiked((prev) => !prev);
-		// 6️⃣ Incrémenter likeKey uniquement au like
-		// if (willBeLiked) setLikeKey((prev) => prev + 1);
+		const nextLiked = !isLiked;
+		setIsLiked(nextLiked);
+		// 4️⃣ Incrémenter likeKey uniquement au like
 	};
 
 	const handleRepost = () => {
 		setIsReposted((prev) => !prev);
 		// 8️⃣ Incrémenter repostKey à chaque toggle du repost
-		// setRepostKey((prev) => prev + 1);
 	};
 
 	return (
 		<View style={styles.container}>
 			<View style={styles.card}>
-				{/* Header */}
 				<View style={styles.header}>
 					<View style={styles.headerLeft}>
 						<View style={styles.avatar} />
@@ -64,7 +56,6 @@ export function InstagramAnimationsStarterScreen() {
 					/>
 				</View>
 
-				{/* Image */}
 				<Image
 					source={{
 						uri: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=600&fit=crop',
@@ -72,10 +63,9 @@ export function InstagramAnimationsStarterScreen() {
 					style={styles.postImage}
 				/>
 
-				{/* Action Bar */}
 				<View style={styles.actionBar}>
 					<View style={styles.actionBarLeft}>
-						{/* 7️⃣ Remplacer View par Animated.View pour le cœur */}
+						{/* 5️⃣ Remplacer View par Animated.View pour le cœur */}
 						{/* <Animated.View key={likeKey} style={isLiked && { animationName: heartBounce, ... }}> */}
 						<Pressable
 							onPress={handleLike}
@@ -142,7 +132,6 @@ export function InstagramAnimationsStarterScreen() {
 					</Pressable>
 				</View>
 
-				{/* Caption */}
 				<View style={styles.footer}>
 					<Text style={styles.caption}>
 						<Text style={styles.username}>reanimated_tuto </Text>

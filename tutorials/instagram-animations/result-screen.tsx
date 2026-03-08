@@ -12,12 +12,9 @@ import {
 // 1️⃣ On importe Animated depuis Reanimated
 import Animated, { CSSAnimationKeyframes } from 'react-native-reanimated';
 
-// 2️⃣ Keyframes = simples objets JS — pas besoin de css.keyframes()
-// On les passera directement dans le style via animationName.
-
-// Bounce du cœur — reproduction fidèle d'Instagram
+// 2️⃣  Bounce du cœur — reproduction fidèle d'Instagram
 // Le cœur grossit, saute vers le haut (translateY négatif) puis redescend sans rebond.
-const heartBounce = {
+const heartBounce: CSSAnimationKeyframes = {
 	'0%': { transform: [{ scale: 1 }, { translateY: 0 }] },
 	'25%': { transform: [{ scale: 2 }, { translateY: -35 }] },
 	// 👆 Le cœur grossit de 50% et saute haut — le moment "pop"
@@ -25,7 +22,7 @@ const heartBounce = {
 	// 👆 Retour à la position d'origine — pas de rebond, arrêt net
 };
 
-// 3️⃣ Spin pour le repost — rotation de 180°
+// 6️⃣ Spin pour le repost — rotation de 180°
 const repostSpin: CSSAnimationKeyframes = {
 	'0%': { transform: [{ rotate: '0deg' }] },
 	'100%': { transform: [{ rotate: '180deg' }] },
@@ -37,20 +34,18 @@ export function InstagramAnimationsResultScreen() {
 	const [isLiked, setIsLiked] = useState(false);
 	const [isReposted, setIsReposted] = useState(false);
 
-	// 4️⃣ Compteur du cœur: force le remontage de l'Animated.View
+	// 3️⃣ Compteur du cœur: force le remontage de l'Animated.View
 	// Changer la key force React à détruire et recréer le composant,
 	// ce qui relance l'animation CSS depuis le début.
 	const [likeKey, setLikeKey] = useState(0);
-	// 5️⃣ Compteur du repost: même principe, mais pour l'icône repost
+	// 7️⃣ Compteur du repost: même principe, mais pour l'icône repost
 	const [repostKey, setRepostKey] = useState(0);
 
 	const handleLike = () => {
-		const willBeLiked = !isLiked;
-		setIsLiked(willBeLiked);
-		// 6️⃣ Cœur: on incrémente la key uniquement au like
-		if (willBeLiked) {
-			setLikeKey((prev) => prev + 1);
-		}
+		const nextLiked = !isLiked;
+		setIsLiked(nextLiked);
+		// 4️⃣ Incrémenter likeKey uniquement au like
+		if (nextLiked) setLikeKey((prev) => prev + 1);
 	};
 
 	const handleRepost = () => {
@@ -62,7 +57,6 @@ export function InstagramAnimationsResultScreen() {
 	return (
 		<View style={styles.container}>
 			<View style={styles.card}>
-				{/* Header */}
 				<View style={styles.header}>
 					<View style={styles.headerLeft}>
 						<View style={styles.avatar} />
@@ -74,7 +68,6 @@ export function InstagramAnimationsResultScreen() {
 					/>
 				</View>
 
-				{/* Image */}
 				<Image
 					source={{
 						uri: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=600&fit=crop',
@@ -84,20 +77,18 @@ export function InstagramAnimationsResultScreen() {
 
 				<View style={styles.actionBar}>
 					<View style={styles.actionBarLeft}>
-						{/* 7️⃣ Cœur: Animated.View + key pour relancer le bounce */}
+						{/* 5️⃣ Cœur: Animated.View + key pour relancer le bounce */}
 						<Pressable
 							onPress={handleLike}
 							hitSlop={8}
 							style={styles.iconWithCount}>
 							<Animated.View
 								key={likeKey}
-								style={
-									isLiked && {
-										animationName: heartBounce,
-										animationDuration: '1s',
-										animationTimingFunction: 'ease-in-out',
-									}
-								}>
+								style={{
+									animationName: heartBounce,
+									animationDuration: '1s',
+									animationTimingFunction: 'ease-in-out',
+								}}>
 								<InstagramHeartIcon
 									size={ICON_SIZE}
 									color={isLiked ? '#ED4956' : '#262626'}
@@ -166,7 +157,6 @@ export function InstagramAnimationsResultScreen() {
 					</Pressable>
 				</View>
 
-				{/* Caption */}
 				<View style={styles.footer}>
 					<Text style={styles.caption}>
 						<Text style={styles.username}>reanimated_tuto </Text>
