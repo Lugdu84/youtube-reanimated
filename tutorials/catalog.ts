@@ -1,6 +1,8 @@
 import type { ComponentType } from 'react';
 
 import { FlipCardStarterScreen, FlipCardResultScreen } from '@/tutorials/flip-card/flip-card-screen';
+import { InstagramAnimationsStarterScreen } from '@/tutorials/instagram-animations/starter-screen';
+import { InstagramAnimationsResultScreen } from '@/tutorials/instagram-animations/result-screen';
 import { ShakeStarterScreen } from '@/tutorials/shake/starter-screen';
 import { ShakeResultScreen } from '@/tutorials/shake/result-screen';
 
@@ -38,6 +40,13 @@ export const tutorialRegistry = {
 			url: 'https://youtu.be/fyqJi9xVY2w',
 			label: 'Voir la video du tutoriel',
 		},
+	},
+	'instagram-animations': {
+		title: 'Instagram Animations',
+		description:
+			'Animations CSS du cœur (like) et du repost Instagram avec css.keyframes() de Reanimated.',
+		starterScreen: InstagramAnimationsStarterScreen,
+		resultScreen: InstagramAnimationsResultScreen,
 	},
 } as const satisfies Record<string, TutorialRecord>;
 
