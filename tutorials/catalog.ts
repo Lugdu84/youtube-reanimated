@@ -1,10 +1,13 @@
 import type { ComponentType } from 'react';
 
-import { FlipCardStarterScreen, FlipCardResultScreen } from '@/tutorials/flip-card/flip-card-screen';
-import { InstagramAnimationsStarterScreen } from '@/tutorials/instagram-animations/starter-screen';
+import {
+	FlipCardResultScreen,
+	FlipCardStarterScreen,
+} from '@/tutorials/flip-card/flip-card-screen';
 import { InstagramAnimationsResultScreen } from '@/tutorials/instagram-animations/result-screen';
-import { ShakeStarterScreen } from '@/tutorials/shake/starter-screen';
+import { InstagramAnimationsStarterScreen } from '@/tutorials/instagram-animations/starter-screen';
 import { ShakeResultScreen } from '@/tutorials/shake/result-screen';
+import { ShakeStarterScreen } from '@/tutorials/shake/starter-screen';
 
 export type TutorialRecord = {
 	title: string;
@@ -44,7 +47,7 @@ export const tutorialRegistry = {
 	'instagram-animations': {
 		title: 'Instagram Animations',
 		description:
-			'Animations CSS du cœur (like) et du repost Instagram avec css.keyframes() de Reanimated.',
+			"Animations CSS du cœur (like) et du repost comme dans l'application Instagram.",
 		starterScreen: InstagramAnimationsStarterScreen,
 		resultScreen: InstagramAnimationsResultScreen,
 	},
@@ -56,7 +59,9 @@ export function isTutorialId(value: string): value is TutorialId {
 	return value in tutorialRegistry;
 }
 
-export const tutorials = Object.entries(tutorialRegistry).map(([id, tutorial]) => ({
-	id: id as TutorialId,
-	...tutorial,
-}));
+export const tutorials = Object.entries(tutorialRegistry).map(
+	([id, tutorial]) => ({
+		id: id as TutorialId,
+		...tutorial,
+	}),
+);
