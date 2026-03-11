@@ -50,6 +50,10 @@ export const tutorialRegistry = {
 			"Animations CSS du cœur (like) et du repost comme dans l'application Instagram.",
 		starterScreen: InstagramAnimationsStarterScreen,
 		resultScreen: InstagramAnimationsResultScreen,
+		youtube: {
+			url: 'https://youtu.be/7MiB0AxJojw',
+			label: 'Voir la video du tutoriel',
+		},
 	},
 } as const satisfies Record<string, TutorialRecord>;
 
